@@ -68,6 +68,14 @@ class LearningLINQ {
                 where (num % 2) == 0
                 select num).ToArray();
         }
+
+        public static IEnumerable<Customer> objectQuery(List<Customer> customers) {
+            IEnumerable<Customer> customerQuery =
+                from cust in customers
+                where cust.city == "London"
+                select cust;
+            return customerQuery;
+        } 
     #endregion
 
     #region TEST_METHOD_SINTAX
@@ -83,7 +91,7 @@ class LearningLINQ {
 
         Util<string>.println("littleCountries: ", littleCountries);
         Util<string>.println("littleCountries Order By: ", littleCountriesOrdenados);
-        Util<string>.printlnstr("Pais mas largo", largestCountry);
+        Util<string>.printValue("Pais mas largo", largestCountry);
     }
     #endregion
 

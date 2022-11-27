@@ -16,9 +16,7 @@
             }
             Console.WriteLine(" ");
         }
-        public static void printlnstr(string tittle, T value){
-            Console.WriteLine(tittle);
-            Console.WriteLine(value);
-            Console.WriteLine(" ");
+        public static void printValue(string tittle, T value){
+            Console.WriteLine(tittle + " " + value);
         }
     }
