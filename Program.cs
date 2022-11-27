@@ -3,43 +3,42 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-
-        #region TEST_QUERY_METHOD_OPERATORS_CHAINING
-
-        var paises = new List<string> { "Peru", "Argentina", "Colombia", "Mexico", "Iran" };
-
-        // sintaxis basada en metodos - Method sintax
-        var paisitos = LearningLINQ.methodSintax(paises);
-
-        // sintaxis basada en consultas - Query sintax 
-        var paisotes = LearningLINQ.querySintax(paises);
-    
-        // encadenamiento de operadores - operators chaining
-        var paisitosOrdenados = paises.Where(p => p.Length <= 6).OrderBy(p => p);
-
-        var paisMasLargo = LearningLINQ.operatorsChaining(paises);
         
-        /* Util.println("Paisotes: ", paisotes);
-        Util.println("Paisitos: ", paisitos);
-        Util.println("Paisitos Order By: ", paisitosOrdenados);
-        Util.printlnstr("Pais mas largo", paisMasLargo); */
-        #endregion
-
-        #region QUERY_EXPRESSION
+        var countries = new List<string> { "Peru", "Argentina", "Colombia", "Mexico", "Iran" };
         
         int[] scores = { 97, 92, 81, 60, 55 };
-        
-        IEnumerable<int> scoresGreater80 = LearningLINQ.queryExpression(scores);
 
-        //Util<int>.println("Scores greater than 80: ", scoresGreater80);
-        
-        #endregion
-
-        #region QUERY_OPERATION
-        
         // Creating the Data Source
         int[] numbers = new int[7] { 0, 1, 2, 3, 4, 5, 6 };
 
+        #region TEST_METHOD_SINTAX
+
+        // sintaxis basada en metodos - Method sintax
+        var littleCountries = LearningLINQ.methodSintax(countries);
+
+        // encadenamiento de operadores - operators chaining
+        var littleCountriesOrdenados = countries.Where(p => p.Length <= 6).OrderBy(p => p);
+        
+        var largestCountry = LearningLINQ.operatorsChaining(countries);
+
+        /*Util<string>.println("littleCountries: ", littleCountries);
+        Util<string>.println("littleCountries Order By: ", littleCountriesOrdenados);
+        Util<string>.printlnstr("Pais mas largo", largestCountry);*/
+
+        #endregion
+
+        #region TEST_QUERY_SINTAX
+
+        // sintaxis basada en consultas - Query sintax 
+        var bigCountries = LearningLINQ.querySintax(countries);
+    
+        //Util<string>.println("bigCountries: ", bigCountries);
+        
+        IEnumerable<int> scoresGreater80 = LearningLINQ.queryExpression(scores);
+        
+        //Util<int>.println("Scores greater than 80: ", scoresGreater80);
+
+        // The following  fuction shows the complete query operation, please look the implemetation.
         LearningLINQ.queryOperation(numbers); // The query return only pair numbers
 
         #endregion
