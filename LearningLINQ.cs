@@ -1,5 +1,5 @@
     /* LINQ -> Language Integrated Query */
-    class LearningLINQ{
+class LearningLINQ{
         #region METHOD_SINTAX
         public static IEnumerable<string> methodSintax(List<string> list) {
             return list.Where(l => l.Length <= 6);
@@ -54,5 +54,19 @@
                 select num;
             return evenNumQuery.Count();
         }
+
+        // Query to list, array..
+        public static List<int> queryIntoCollection(int[] numbers){
+            return 
+                (from num in numbers
+                where (num % 2) == 0
+                select num).ToList();
+        }
+        public static int[] _queryIntoCollection(int[] numbers){
+            return 
+                (from num in numbers
+                where (num % 2) == 0
+                select num).ToArray();
+        }
         #endregion
-    }
+}
