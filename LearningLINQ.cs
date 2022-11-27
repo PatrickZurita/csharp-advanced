@@ -1,15 +1,15 @@
     /* LINQ -> Language Integrated Query */
-class LearningLINQ{
-        #region METHOD_SINTAX
+class LearningLINQ {
+    #region METHOD_SINTAX
         public static IEnumerable<string> methodSintax(List<string> list) {
             return list.Where(l => l.Length <= 6);
         }
         public static string operatorsChaining(List<string> list){
             return list.Where(l => l.Length > 6).OrderByDescending(l => l.Length).First(); // get the largest string
         }
-        #endregion
+    #endregion
         
-        #region QUERY_SINTAX
+    #region QUERY_SINTAX
         public static IEnumerable<string> querySintax(List<string> list) {
             return             
                 from l in list            
@@ -68,5 +68,47 @@ class LearningLINQ{
                 where (num % 2) == 0
                 select num).ToArray();
         }
-        #endregion
+    #endregion
+
+    #region TEST_METHOD_SINTAX
+
+            public static void TestMethodSintax(List<string> countries){
+        // sintaxis basada en metodos - Method sintax
+        var littleCountries = methodSintax(countries);
+
+        // encadenamiento de operadores - operators chaining
+        var littleCountriesOrdenados = countries.Where(p => p.Length <= 6).OrderBy(p => p);
+        
+        var largestCountry = operatorsChaining(countries);
+
+        Util<string>.println("littleCountries: ", littleCountries);
+        Util<string>.println("littleCountries Order By: ", littleCountriesOrdenados);
+        Util<string>.printlnstr("Pais mas largo", largestCountry);
+    }
+    #endregion
+
+    #region TEST_QUERY_SINTAX
+    public static void TestQuerySintax(List<string> countries, int[] scores, int[] numbers){
+        // sintaxis basada en consultas - Query sintax 
+        var bigCountries = querySintax(countries);
+    
+        Util<string>.println("bigCountries: ", bigCountries);
+        
+        IEnumerable<int> scoresGreater80 = queryExpression(scores);
+        
+        Util<int>.println("Scores greater than 80: ", scoresGreater80);
+
+        // The following  fuction shows the complete query operation, please look the implemetation.
+        queryOperation(numbers); // The query return only pair numbers
+
+        List<int> numQuery2 = queryIntoCollection(numbers);
+
+        Console.WriteLine(numQuery2);
+
+        int [] numQuery3 = _queryIntoCollection(numbers);
+
+        Console.WriteLine(numQuery3);
+    }
+    #endregion
+
 }
