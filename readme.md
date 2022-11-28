@@ -12,8 +12,6 @@ This repository contains samples and tutorials that run using the [dotnet try](h
 
 You can explore these tutorials in your environment using the `dotnet try` global tool:
 
-*Prerequisite: Install .NET Core SDK [3.0](https://dotnet.microsoft.com/download/dotnet-core/3.0)*
-
 1. Install the [dotnet-try](https://github.com/dotnet/try/blob/master/README.md#setup) global tool.
     -  to install: `dotnet tool install -g Microsoft.dotnet-try`
     -  to uninstall: `dotnet tool uninstall -g Microsoft.dotnet-try`
@@ -27,16 +25,3 @@ You can explore these tutorials in your environment using the `dotnet try` globa
 1. This will launch the browser. Now, you can read the documentation and run code in one place.
 
     ![dotnet try -  _Readme md (2)](https://user-images.githubusercontent.com/2546640/57165217-737b7880-6dc4-11e9-8b4e-0e70966ac03d.gif)
-
-## The tutorials in this repository are:
-
-- [Beginners Guide to C#](./Beginners/Readme.md)
-- [101 LINQ Samples](./101-linq-samples/readme.md)
-- [Explore C# 7 through C# 7.3](./csharp7/readme.md).
-- [Explore C# 8](./csharp8/readme.md).
-
-## Contribution Guidelines
-
-We're working on this. The existing tutorials are linked to [.NET docs](https://github.com/dotnet/docs), but that's not required.
-
-If you have suggestions for a sample, create an issue to start a discussion.
