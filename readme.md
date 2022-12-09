@@ -4,24 +4,12 @@
 
 # Try .NET <img src ="https://user-images.githubusercontent.com/2546640/56708992-deee8780-66ec-11e9-9991-eb85abb1d10a.png" width="80px" alt="dotnet bot in space" align ="right">
 
-|| [**Basics**](#basics) • [**Contribution Guidelines**](#contribution-guidelines)  ||
+|| [**Basics**](#basics) • [**Contribution**](#contribution)  ||
 
 ## Basics
 
-This repository contains samples and tutorials that run using the [dotnet try](https://github.com/dotnet/try) global tool.
+This repository contains LINQ features of C# 11. 
 
-You can explore these tutorials in your environment using the `dotnet try` global tool:
+## Contribution
 
-1. Install the [dotnet-try](https://github.com/dotnet/try/blob/master/README.md#setup) global tool.
-    -  to install: `dotnet tool install -g Microsoft.dotnet-try`
-    -  to uninstall: `dotnet tool uninstall -g Microsoft.dotnet-try`
-    -  to update: `dotnet tool update -g Microsoft.dotnet-try`
-2. Clone this repository.
-3. Set the current directory to one of the sample tutorials (or use the current folder to see all samples).
-4. Run `dotnet try`.
-
-    ![dotnet try](https://user-images.githubusercontent.com/2546640/57164943-ab35f080-6dc3-11e9-8230-ee521e00e428.gif)
-
-1. This will launch the browser. Now, you can read the documentation and run code in one place.
-
-    ![dotnet try -  _Readme md (2)](https://user-images.githubusercontent.com/2546640/57165217-737b7880-6dc4-11e9-8b4e-0e70966ac03d.gif)
+Pull the latest changes from master and merge into the develop branch.

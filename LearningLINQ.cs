@@ -7,10 +7,27 @@ class LearningLINQ {
         public static string operatorsChaining(List<string> list){
             return list.Where(l => l.Length > 6).OrderByDescending(l => l.Length).First(); // get the largest string
         }
+        public static int cantAdultCustomersLondon(List<Customer> customers){
+            return customers.Where(c => c.age > 18 && c.city.Contains("don"))
+                   .OrderBy(c => c.age)
+                   .Select(c => new
+                   { 
+                     id = c.id,
+                     age = c.age,
+                     city = c.city              
+                   }).Count();
+        }
+    public static Customer getYoungCustomer(List<Customer> customers) => customers.OrderByDescending(c => c.age)
+                                                                                  .LastOrDefault();
+    public static Customer _getYoungCustomer(List<Customer> customers) {
+        Func<Customer, int> keySelector = c => c.age;
+        return customers.OrderByDescending(keySelector).LastOrDefault();
+    }
+
     #endregion
-        
+
     #region QUERY_SINTAX
-        public static IEnumerable<string> querySintax(List<string> list) {
+    public static IEnumerable<string> querySintax(List<string> list) {
             return             
                 from l in list            
                 where l.Length > 6

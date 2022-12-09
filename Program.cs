@@ -11,12 +11,11 @@ internal class Program
         int[] numbers = new int[7] { 0, 1, 2, 3, 4, 5, 6 };
 
         var customers = new List<Customer>() { 
-           new Customer(1, "London"),
-           new Customer(2, "Lima"),
-           new Customer(3, "London")
+           new Customer(1, "London",36),
+           new Customer(2, "Lima",15),
+           new Customer(3, "Dubai", 27)
         };
 
-        // Show the customers who living in london
         IEnumerable<Customer> ieCustomer = LearningLINQ.objectQuery(customers);
 
         int index = 1;
@@ -26,8 +25,17 @@ internal class Program
             Util<string>.printValue("City: ", cus.city);
             Util<int>.printValue("Id: ", cus.id);
         }
+        
+        var youngCustomer = LearningLINQ.getYoungCustomer(customers);
+
+        Console.WriteLine(youngCustomer.age);
+        Console.WriteLine(youngCustomer.city);           
+        Console.WriteLine(youngCustomer.id);           
 
         //LearningLINQ.TestMethodSintax(countries);
         //LearningLINQ.TestQuerySintax(countries, scores, numbers);
+
+        //int cantAdultCustomers = LearningLINQ.cantAdultCustomersLondon(customers);
+        //Util<int>.printValue("Cantidad de adultos que viven en london", cantAdultCustomers);
     }
 }
