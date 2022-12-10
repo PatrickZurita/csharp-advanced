@@ -3,39 +3,21 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        // Creating the Data Source
-        var countries = new List<string> { "Peru", "Argentina", "Colombia", "Mexico", "Iran" };
-        
-        int[] scores = { 97, 92, 81, 60, 55 };
-
-        int[] numbers = new int[7] { 0, 1, 2, 3, 4, 5, 6 };
-
-        var customers = new List<Customer>() { 
+        var customers = new List<Customer>() {
            new Customer(1, "London",36),
            new Customer(2, "Lima",15),
-           new Customer(3, "Dubai", 27)
+           new Customer(3, "Dubai", 27),
+           new Customer(4, "London",24),
         };
 
-        IEnumerable<Customer> ieCustomer = LearningLINQ.objectQuery(customers);
+        Func<Customer, bool> filter = c => c.city == "London" && c.age > 18;
 
-        int index = 1;
+        IEnumerable<Customer> customersByFilter = LearningLINQ.getCustomersByFilter(filter, customers);
 
-        foreach (var cus in ieCustomer) {
-            Util<int>.printValue("Customer: ", index++);
-            Util<string>.printValue("City: ", cus.city);
-            Util<int>.printValue("Id: ", cus.id);
+        foreach (var c in customersByFilter)
+        {
+            Util<string>.printValue("City: ", c.city);
+            Util<int>.printValue("Age: ", c.age);
         }
-        
-        var youngCustomer = LearningLINQ.getYoungCustomer(customers);
-
-        Console.WriteLine(youngCustomer.age);
-        Console.WriteLine(youngCustomer.city);           
-        Console.WriteLine(youngCustomer.id);           
-
-        //LearningLINQ.TestMethodSintax(countries);
-        //LearningLINQ.TestQuerySintax(countries, scores, numbers);
-
-        //int cantAdultCustomers = LearningLINQ.cantAdultCustomersLondon(customers);
-        //Util<int>.printValue("Cantidad de adultos que viven en london", cantAdultCustomers);
     }
 }
