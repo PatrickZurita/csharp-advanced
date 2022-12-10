@@ -15,12 +15,11 @@ class LearningLINQ
         return customers.Where(c => c.age > 18 && c.city.Contains("don"))
                         .OrderBy(c => c.age);
     }
-    /*public static  IEnumerable<T> GetNewListCustomerOnlyIDAndAge(List<Customer> customers) => customers.Where(c => c.age > 18 && c.city.Contains("don"))
-                       .OrderBy(c => c.age) // FIX THIS, I WANT GET A NEW LIST WITH DIFERENT OBJECT. THIS OBJECT ONLY HAVE CITY AND AGE
-                       .Select(c => new {           [0] = {                         [1] = {
-                          city = c.city,                     city = "dsa"                   city = "sd"
-                          age = c.age                        age = 23                        age = 1
-                       }).GetType();                      }                               }*/
+
+    public static IEnumerable<SomeClass> GetNewListCustomerOnlyIDAndAge(List<Customer> customers) => customers.Where(c => c.age > 18 && c.city.Contains("don"))
+                       .OrderBy(c => c.age)
+                       .Select(c => new SomeClass(c.city, c.age));
+
     public static Customer getYoungCustomer(List<Customer> customers) => customers.OrderByDescending(c => c.age).LastOrDefault();
     public static Customer _getYoungCustomer(List<Customer> customers)
     {
@@ -102,6 +101,36 @@ class LearningLINQ
             where cust.city == "London"
             select cust;
         return customerQuery;
+    }
+    #endregion
+    #region TEST_NICE_FUNCTIONS
+    public void TestNiceFunctions()
+    {
+        var customers = new List<Customer>() {
+                    new Customer(1, "London",36),
+                    new Customer(2, "Lima",15),
+                    new Customer(3, "Dubai", 27),
+                    new Customer(4, "London",24),
+                    };
+
+        Func<Customer, bool> filter = c => c.city == "London" && c.age > 18;
+
+        IEnumerable<Customer> customersByFilter = LearningLINQ.getCustomersByFilter(filter, customers);
+
+        foreach (var c in customersByFilter)
+        {
+            Util<string>.printValue("City: ", c.city);
+            Util<int>.printValue("Age: ", c.age);
+        }
+
+        IEnumerable<SomeClass> iec = LearningLINQ.GetNewListCustomerOnlyIDAndAge(customers);
+        foreach (var c in iec)
+        {
+            Util<string>.printValue("City: ", c.city);
+            Util<int>.printValue("Age: ", c.age);
+        }
+
+        Util<int>.printValue("-> ", iec.Count());
     }
     #endregion
 
