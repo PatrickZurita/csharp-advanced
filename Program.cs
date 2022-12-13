@@ -11,12 +11,21 @@ internal class Program
                 Tittle = "R for Data Science",
                 Description = "R basic to advanced",
                 Duration = 9000,
-                Nivel = 1,
+                Nivel = 2,
                 Area = Area.DataScience
             },
             new Curso
             {
-                Id = "ES-prog-002",
+                Id = "ES-busi-002",
+                Tittle = "Business like goodfellas",
+                Description = "Learn Busisness",
+                Duration = 36000,
+                Nivel = 3,
+                Area = Area.BussisnesInteligence
+            },
+            new Curso
+            {
+                Id = "ES-prog-003",
                 Tittle = "React for dummies",
                 Description = "Learn React basic to advanced",
                 Duration = 14000,
@@ -25,11 +34,11 @@ internal class Program
             },
             new Curso
             {
-                Id = "ES-prog-003",
+                Id = "ES-prog-004",
                 Tittle = "LINQ",
                 Description = "Linq basic to advanced",
                 Duration = 18000,
-                Nivel = 2,
+                Nivel = 1,
                 Area = Area.CSharp
             }
         };
@@ -55,5 +64,29 @@ internal class Program
                 Area = Area.DataScience
             }
         };
+
+        var cursosPorInstructor = cursos.Where(c => c.Id.Contains("prog"))
+            .Join(instructores,
+                c => c.Area,
+                i => i.Area,
+                (c, i) => new
+                {
+                    c.Id,
+                    c.Tittle,
+                    c.Nivel,
+                    instructor = i.Name
+                }
+            ).GroupBy(ci => ci.instructor);
+
+        var cursosDuracionMayores15000 = cursos.Where(c=> c.Duration > 15000)
+            .Select(c => new 
+            {
+                c.Tittle,
+                c.Description,
+                c.Duration
+            });
+
+        Console.WriteLine(cursosDuracionMayores15000);
+        Console.WriteLine(cursosPorInstructor);
     }
 }
