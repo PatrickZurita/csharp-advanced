@@ -1,4 +1,5 @@
-public enum Area {
+public enum Area
+{
     Developer,
     CSharp,
     Javascript,
