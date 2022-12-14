@@ -2,9 +2,9 @@
 class LearningLINQ
 {
     #region METHOD_SINTAX
-    public static IEnumerable<string> methodSintax(List<string> list) => list.Where(l => l.Length <= 6);
-    public static string operatorsChaining(List<string> list) => list.Where(l => l.Length > 6).OrderByDescending(l => l.Length).First(); // get the largest string
-    public static int cantAdultCustomersLondon(List<Customer> customers)
+    public static IEnumerable<string> MethodSintax(List<string> list) => list.Where(l => l.Length <= 6);
+    public static string OperatorsChaining(List<string> list) => list.Where(l => l.Length > 6).OrderByDescending(l => l.Length).First(); // get the largest string
+    public static int CantAdultCustomersLondon(List<Customer> customers)
     {
         return customers.Where(c => c.age > 18 && c.city.Contains("don"))
                        .OrderBy(c => c.age)
@@ -20,24 +20,24 @@ class LearningLINQ
                        .OrderBy(c => c.age)
                        .Select(c => new SomeClass(c.city, c.age));
 
-    public static Customer getYoungCustomer(List<Customer> customers) => customers.OrderByDescending(c => c.age).LastOrDefault();
-    public static Customer _getYoungCustomer(List<Customer> customers)
+    public static Customer GetYoungCustomer(List<Customer> customers) => customers.OrderByDescending(c => c.age).LastOrDefault();
+    public static Customer _GetYoungCustomer(List<Customer> customers)
     {
         Func<Customer, int> keySelector = c => c.age;
         return customers.OrderByDescending(keySelector).LastOrDefault();
     }
-    public static IEnumerable<Customer> getCustomersByFilter(Func<Customer, bool> filter, List<Customer> customers) => customers.Where(filter);
+    public static IEnumerable<Customer> GetCustomersByFilter(Func<Customer, bool> filter, List<Customer> customers) => customers.Where(filter);
     #endregion
 
     #region QUERY_SINTAX
-    public static IEnumerable<string> querySintax(List<string> list)
+    public static IEnumerable<string> QuerySintax(List<string> list)
     {
         return
             from l in list
             where l.Length > 6
             select l;
     }
-    public static IEnumerable<int> queryExpression(int[] array)
+    public static IEnumerable<int> QueryExpression(int[] array)
     {
         IEnumerable<int> ie =
             from a in array  // Query expression
@@ -58,7 +58,7 @@ class LearningLINQ
             ---QUERY EXECTUTION---
             foreach(var item in Query) 
     */
-    public static void queryOperation(int[] array)
+    public static void QueryOperation(int[] array)
     {
         var numQuery =
             from a in array
@@ -69,7 +69,7 @@ class LearningLINQ
             Console.WriteLine("{0,1} ", a);
     }
 
-    public static int quantityOfEvenNumbers(int[] numbers)
+    public static int QuantityOfEvenNumbers(int[] numbers)
     {
         var evenNumQuery =
             from num in numbers  // NUMBERS IS THE DATA SOURCE
@@ -79,14 +79,14 @@ class LearningLINQ
     }
 
     // Query to list, array..
-    public static List<int> queryIntoCollection(int[] numbers)
+    public static List<int> QueryIntoCollection(int[] numbers)
     {
         return
             (from num in numbers
              where (num % 2) == 0
              select num).ToList();
     }
-    public static int[] _queryIntoCollection(int[] numbers)
+    public static int[] _QueryIntoCollection(int[] numbers)
     {
         return
             (from num in numbers
@@ -94,7 +94,7 @@ class LearningLINQ
              select num).ToArray();
     }
 
-    public static IEnumerable<Customer> objectQuery(List<Customer> customers)
+    public static IEnumerable<Customer> ObjectQuery(List<Customer> customers)
     {
         IEnumerable<Customer> customerQuery =
             from cust in customers
@@ -115,7 +115,7 @@ class LearningLINQ
 
         Func<Customer, bool> filter = c => c.city == "London" && c.age > 18;
 
-        IEnumerable<Customer> customersByFilter = LearningLINQ.getCustomersByFilter(filter, customers);
+        IEnumerable<Customer> customersByFilter = LearningLINQ.GetCustomersByFilter(filter, customers);
 
         foreach (var c in customersByFilter)
         {
@@ -138,12 +138,12 @@ class LearningLINQ
     public static void TestMethodSintax(List<string> countries)
     {
         // sintaxis basada en metodos - Method sintax
-        var littleCountries = methodSintax(countries);
+        var littleCountries = MethodSintax(countries);
 
         // encadenamiento de operadores - operators chaining
         var littleCountriesOrdenados = countries.Where(p => p.Length <= 6).OrderBy(p => p);
 
-        var largestCountry = operatorsChaining(countries);
+        var largestCountry = OperatorsChaining(countries);
 
         Util<string>.println("littleCountries: ", littleCountries);
         Util<string>.println("littleCountries Order By: ", littleCountriesOrdenados);
@@ -155,22 +155,22 @@ class LearningLINQ
     public static void TestQuerySintax(List<string> countries, int[] scores, int[] numbers)
     {
         // sintaxis basada en consultas - Query sintax 
-        var bigCountries = querySintax(countries);
+        var bigCountries = QuerySintax(countries);
 
         Util<string>.println("bigCountries: ", bigCountries);
 
-        IEnumerable<int> scoresGreater80 = queryExpression(scores);
+        IEnumerable<int> scoresGreater80 = QueryExpression(scores);
 
         Util<int>.println("Scores greater than 80: ", scoresGreater80);
 
         // The following  fuction shows the complete query operation, please look the implemetation.
-        queryOperation(numbers); // The query return only pair numbers
+        QueryOperation(numbers); // The query return only pair numbers
 
-        List<int> numQuery2 = queryIntoCollection(numbers);
+        List<int> numQuery2 = QueryIntoCollection(numbers);
 
         Console.WriteLine(numQuery2);
 
-        int[] numQuery3 = _queryIntoCollection(numbers);
+        int[] numQuery3 = _QueryIntoCollection(numbers);
 
         Console.WriteLine(numQuery3);
     }
