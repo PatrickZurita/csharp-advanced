@@ -41,4 +41,22 @@ class PatternAttributeMatching
 
         Console.WriteLine(verifyMethodIsGetAndTheContentIsChildAndPortIsOdd(pet));
     }
+        internal enum Moneda
+        {
+            PEN,
+            EUR,
+            USD
+        }
+        public static decimal ConvertCurrency(decimal amount, Moneda inicial, Moneda final) => 
+        (inicial, final) switch
+        {
+            (Moneda.PEN, Moneda.USD) => (amount * 3.5m),// obtener dinamicamente el valor del dolar 
+            (Moneda.USD, Moneda.PEN) => (amount * 0.035m),
+            _ => throw new Exception("F") 
+        };
+
+        public static void TuplePatterns()
+        {
+            Console.WriteLine(ConvertCurrency(1000, Moneda.USD, Moneda.PEN));
+        }
 }
