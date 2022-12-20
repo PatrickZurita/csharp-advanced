@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 class PatternAttributeMatching
 {
     public static void PatternMatching()
@@ -50,13 +52,12 @@ class PatternAttributeMatching
         public static decimal ConvertCurrency(decimal amount, Moneda inicial, Moneda final) => 
         (inicial, final) switch
         {
-            (Moneda.PEN, Moneda.USD) => (amount * 3.5m),// obtener dinamicamente el valor del dolar 
-            (Moneda.USD, Moneda.PEN) => (amount * 0.035m),
+            (Moneda.PEN, Moneda.USD) => (amount / 3.5m),
+            (Moneda.USD, Moneda.PEN) => (amount * 3.5m),
             _ => throw new Exception("F") 
         };
 
-        public static void TuplePatterns()
-        {
-            Console.WriteLine(ConvertCurrency(1000, Moneda.USD, Moneda.PEN));
-        }
+    //[Obsolete("This method is obsolete. Please use other fuction.", true)]
+    [Description("Convert 1000 USD to PEN")]
+    public static void TuplePatterns() => Console.WriteLine(ConvertCurrency(1000, Moneda.USD, Moneda.PEN));
 }
